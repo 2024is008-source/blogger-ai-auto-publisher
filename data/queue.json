@@ -1,1 +1,21 @@
-[]
+[
+  {
+    "queue_id": "q_058ddff268f3",
+    "article_id": "art_1554feaa20b5",
+    "title": "Indoor Herb Gardening: The Complete Beginner Guide",
+    "target_blog_id": "3734923322015460188",
+    "target_blog_name": "3734923322015460188",
+    "article_content_ref": "data/articles/art_1554feaa20b5.json",
+    "publishing_mode": "draft",
+    "status": "Draft",
+    "created_at": "2026-11-22T20:46:41.328266+00:00",
+    "scheduled_at_utc": null,
+    "timezone_name": "UTC",
+    "published_at_utc": null,
+    "blogger_post_id": null,
+    "post_url": null,
+    "error_message": "",
+    "retry_count": 0,
+    "max_retries": 3
+  }
+]

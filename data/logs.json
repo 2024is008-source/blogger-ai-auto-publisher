@@ -1,1 +1,21 @@
-[]
+[
+  {
+    "timestamp": "2026-11-22T20:45:08.512145+00:00",
+    "level": "INFO",
+    "component": "article_generator",
+    "message": "Starting 10-step article generation",
+    "context": {
+      "keyword": "indoor herb gardening"
+    }
+  },
+  {
+    "timestamp": "2026-11-22T20:46:30.831265+00:00",
+    "level": "INFO",
+    "component": "article_generator",
+    "message": "Article generated successfully",
+    "context": {
+      "article_id": "art_1554feaa20b5",
+      "title": "Indoor Herb Gardening: The Complete Beginner Guide"
+    }
+  }
+]
