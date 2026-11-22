@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 10px;
+  }
+
+  * {
+    @apply border-slate-200 dark:border-slate-800;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    @apply outline-none ring-2 ring-brand-600 ring-offset-2 ring-offset-white dark:ring-offset-slate-950;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.article-preview h2 {
+  @apply mt-6 mb-3 text-xl font-semibold text-slate-900 dark:text-slate-100;
+}
+
+.article-preview h3 {
+  @apply mt-4 mb-2 text-lg font-semibold text-slate-800 dark:text-slate-200;
+}
+
+.article-preview p {
+  @apply mb-3 leading-relaxed text-slate-700 dark:text-slate-300;
+}
+
+.article-preview ul,
+.article-preview ol {
+  @apply mb-4 ml-6 space-y-1 text-slate-700 dark:text-slate-300;
+}
+
+.article-preview ul {
+  @apply list-disc;
+}
+
+.article-preview ol {
+  @apply list-decimal;
+}
+
+.article-preview table {
+  @apply my-4 w-full border-collapse text-sm;
+}
+
+.article-preview th,
+.article-preview td {
+  @apply border border-slate-200 px-3 py-2 text-left dark:border-slate-700;
+}
+
+.article-preview th {
+  @apply bg-slate-100 font-semibold dark:bg-slate-800;
+}

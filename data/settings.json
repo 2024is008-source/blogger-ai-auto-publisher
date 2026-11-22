@@ -1,0 +1,10 @@
+{
+  "gemini_model": "gemini-2.5-flash",
+  "seo_title_min": 45,
+  "seo_title_max": 65,
+  "seo_meta_min": 120,
+  "seo_meta_max": 160,
+  "default_license_filter": "commercial_permitted",
+  "default_timezone": "UTC",
+  "image_host_provider": "none"
+}

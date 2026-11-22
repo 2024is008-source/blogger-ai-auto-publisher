@@ -1,0 +1,92 @@
+name: Manual Bulk Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      article_ids:
+        description: "Comma-separated article IDs"
+        required: true
+        type: string
+      blog_ids:
+        description: "Comma-separated target Blogger blog IDs"
+        required: true
+        type: string
+      publishing_mode:
+        description: "Publishing mode"
+        required: true
+        default: "draft"
+        type: choice
+        options:
+          - draft
+          - manual
+          - scheduled
+      scheduled_time:
+        description: "Optional ISO-8601 time (for scheduled mode)"
+        required: false
+        default: ""
+        type: string
+      timezone:
+        description: "IANA timezone name"
+        required: false
+        default: "UTC"
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: blogger-data-write
+  cancel-in-progress: false
+
+jobs:
+  bulk-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: python -m pip install --upgrade pip && pip install -r requirements.txt
+
+      - name: Execute bulk publishing
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          BLOGGER_REFRESH_TOKEN: ${{ secrets.BLOGGER_REFRESH_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          INPUT_ARTICLE_IDS: ${{ inputs.article_ids }}
+          INPUT_BLOG_IDS: ${{ inputs.blog_ids }}
+          INPUT_MODE: ${{ inputs.publishing_mode }}
+          INPUT_SCHEDULED: ${{ inputs.scheduled_time }}
+          INPUT_TIMEZONE: ${{ inputs.timezone }}
+        run: |
+          python -m backend.main bulk-publish \
+            --article-ids "$INPUT_ARTICLE_IDS" \
+            --blog-ids "$INPUT_BLOG_IDS" \
+            --mode "$INPUT_MODE" \
+            --scheduled-time "$INPUT_SCHEDULED" \
+            --timezone "$INPUT_TIMEZONE" > bulk-publish-report.json
+
+      - name: Upload bulk publish report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bulk-publish-report
+          path: bulk-publish-report.json
+          retention-days: 14
+
+      - name: Commit updated history
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(data): record bulk publish results"
+            git push
+          fi

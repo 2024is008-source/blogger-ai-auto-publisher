@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Environment & Secrets (NEVER commit)
+.env
+.env.*
+*.pem
+*.key
+client_secret*.json
+credentials.json
+token.json
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+*.local
+
+# Temporary workflow reports
+generation-report.json
+publish-report.json
+bulk-publish-report.json
+schedule-run-report.json
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

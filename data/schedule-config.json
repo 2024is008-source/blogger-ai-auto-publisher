@@ -1,0 +1,9 @@
+{
+  "enabled": false,
+  "frequency": "daily",
+  "days_of_week": ["Mon", "Wed", "Fri"],
+  "preferred_time_local": "09:00",
+  "timezone_name": "UTC",
+  "max_daily_posts": 2,
+  "target_blog_ids": []
+}
