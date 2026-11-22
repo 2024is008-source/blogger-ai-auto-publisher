@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Blogger AI Auto Publisher
 
 A serverless, zero-cost, production-ready platform for generating SEO-structured blog articles with Google Gemini, discovering copyright-verified images, managing multiple Google Blogger websites, and automating scheduled publishing through GitHub Pages and GitHub Actions.
@@ -175,3 +176,6 @@ npm run dev
 - **`IMAGE_UPLOAD_NOT_CONFIGURED` error**: Blogger API v3 has no general media upload endpoint. Configure `IMAGE_HOST_PROVIDER=cloudinary` (with `CLOUDINARY_CLOUD_NAME` and `CLOUDINARY_UPLOAD_PRESET`) or `IMAGE_HOST_PROVIDER=github` (with `GITHUB_IMAGE_REPO`).
 - **GitHub Actions `git push` rejected**: Confirm **Settings → Actions → General → Workflow permissions** is set to **Read and write permissions**.
 - **Scheduled posts delayed by a few minutes**: GitHub Actions cron triggers can queue under load; this is expected. The queue processor handles drift automatically by evaluating `scheduled_at_utc <= now_utc`.
+=======
+# blogger-ai-auto-publisher
+>>>>>>> d96a88fee59f9bd740c013d431fc8b849ccced61
